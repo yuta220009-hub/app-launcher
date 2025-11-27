@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アプリを起動しています...</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: #333;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #007bff;
+        }
+        a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: 2px solid #28a745;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+
+    <script type="text/javascript">
+        // ★★★ ここを変更してください ★★★
+        var APP_SCHEME = 'jp.co.higobank.passbook.cdp://';
+        // ★★★ ここまで変更してください ★★★
+        
+        // アプリ起動を試みる関数
+        function tryLaunchApp() {
+            // 1. アプリスキームへの遷移を試みる（アプリがインストールされていれば起動する）
+            window.location.href = APP_SCHEME;
+            
+            // 2. アプリが起動しなかった場合（ブラウザに留まった場合）に備えて、
+            //    数秒後に代替の動作を行う（ここでは何もしない）
+            setTimeout(function() {
+                // ここに、ストアへリダイレクトするなど、他の動作を追加できます。
+                // 例: window.location.href = 'https://appstore.com/your-app';
+                
+                // アプリ起動ボタンを有効にするためのメッセージを表示
+                var message = document.getElementById('message');
+                if (message) {
+                    message.innerHTML = '自動で起動しませんでした。<br>下のボタンをクリックして手動で起動してください。';
+                }
+            }, 1500); // 1.5秒後に実行
+        }
+        
+        // ページ読み込み完了時に起動処理を実行
+        window.onload = tryLaunchApp;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>アプリを起動しています...</h2>
+        <p id="message">しばらくお待ちください。</p>
+        
+        <a href="jp.co.higobank.passbook.cdp://" target="_top">
+            アプリを手動で起動する
+        </a>
+    </div>
+</body>
+</html>
